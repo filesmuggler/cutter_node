@@ -10,9 +10,13 @@ sudo apt install python-rosdep python-catkin-tools python-vcstool
 
 ## Building
 
-
-
 ## Updating
+
+## Running
+
+```bash
+rosrun cutter_node cutter_node.py <your image topic>:=/image_bgr8
+```
 
 ## Algorithms
 
