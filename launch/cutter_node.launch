@@ -1,0 +1,27 @@
+ <launch>
+    <node pkg="realsense_node_python" type="realsense_rgb_align_depth.py" name="realsense_rgb_align_depth" />
+    <node pkg="cv_bridge_converter" type="cv_bridge_converter_node" name="cv_bridge_converter_node"/>
+
+    <node pkg="cutter_node" type="cutter_node_grabcut.py" name="cutter_node_grabcut"/>
+    <node pkg="cutter_node" type="cutter_node_align_depth.py" name="cutter_node_align_depth"/>
+    <node pkg="cutter_node" type="cutter_node_sync.py" name="cutter_node_sync"/>
+
+    <node pkg="nodelet" type="nodelet" name="nodelet_manager" args="manager" />
+
+    <node pkg="nodelet" type="nodelet" name="cutter_node_object_points"
+        args="load depth_image_proc/point_cloud_xyz nodelet_manager">
+        <remap from="camera_info" to="/camera_info_sync"/>
+        <remap from="image_rect" to="/align_depth_sync"/>
+        <remap from="points" to="/cutter_node_object_points"/>
+    </node>
+
+    <node pkg="nodelet" type="nodelet" name="cutter_node_intel_points"
+        args="load depth_image_proc/point_cloud_xyz nodelet_manager">
+        <remap from="camera_info" to="/camera_info"/>
+        <remap from="image_rect" to="/align_depth"/>
+        <remap from="points" to="/cutter_node_intel_points"/>
+    </node>
+
+    <node type="rviz" name="rviz" pkg="rviz" args="-d $(find cutter_node)/rviz/config.rviz" />
+
+</launch> 

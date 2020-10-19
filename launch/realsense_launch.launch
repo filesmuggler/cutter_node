@@ -1,0 +1,3 @@
+<launch>
+    <node pkg="realsense_node_python" type="realsense_rgb_depth_image_point_cloud.py" name="realsense_rgb_depth_image_point_cloud" />
+</launch>

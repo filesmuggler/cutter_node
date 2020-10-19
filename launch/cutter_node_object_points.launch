@@ -1,0 +1,16 @@
+ <launch>
+  <node pkg="nodelet" type="nodelet" name="nodelet_manager" args="manager" />
+  <node pkg="nodelet" type="nodelet" name="cutter_node_object_points"
+        args="load depth_image_proc/point_cloud_xyz nodelet_manager">
+    <remap from="camera_info" to="/camera_info_sync"/>
+    <remap from="image_rect" to="/align_depth_sync"/>
+    <remap from="points" to="/cutter_node_object_points"/>
+  </node>
+
+  <node pkg="nodelet" type="nodelet" name="cutter_node_intel_points"
+        args="load depth_image_proc/point_cloud_xyz nodelet_manager">
+    <remap from="camera_info" to="/camera_info"/>
+    <remap from="image_rect" to="/align_depth"/>
+    <remap from="points" to="/cutter_node_intel_points"/>
+  </node>
+</launch> 
