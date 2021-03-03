@@ -1,0 +1,7 @@
+<launch>
+<!-- 
+<node pkg="follower" name="follower_node" type="follower_node"/>
+<node pkg="cutter_node" name="dirty_sync" type="dirty_sync.py"/> -->
+
+
+</launch>
